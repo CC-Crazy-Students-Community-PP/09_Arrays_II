@@ -82,11 +82,11 @@
             
             if ( cond ) {                                       // open
                 stack.push( tag );
-                output( stack );
+                // output( stack );                               // zeigt die Struktur in der Konsole
                 return true;
             } else {                                            // close
                 stack.pop();
-                output( stack );
+                // output( stack );                               // zeigt die Struktur in der Konsole
                 return false;
             }
             
