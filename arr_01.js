@@ -40,7 +40,6 @@
             close_o: "</", 
             close: ">" 
         }
-        const newLine = "\n";
         const controls = [ "<", "</", ">" ];
         const tags = [ 
             "html", "head", "head", "body",
@@ -56,18 +55,15 @@
     // Modul: HTML-Synthese | Test
         output( getHTML() );
         function getHTML() {
-            let htmlStr = "", op = "", count = 0;
+            let htmlStr = "";
 
             for ( let i = 0; i < tags.length; i ++ ) {
                 // if(false) {
                 if ( isOpenElement( tags[ i ] ) ) { 
-                    count = stack.length - 1; 
-                    op = "open";
+                    htmlStr += getElement( tags[ i ], "open" );
                 } else {
-                    count = stack.length; 
-                    op = "close";
+                    htmlStr += getElement( tags[ i ], "close" );
                 }
-                htmlStr += getTabs( count ) + getElement( tags[i], op) + newLine;
             }
 
             return htmlStr;
@@ -107,15 +103,6 @@
                 default:
                 return "#!?";
             }
-        }
-
-    // Modul: Erstellen der Tabulatoren (1..n)
-        function getTabs( count ) {
-            let tabs ="";
-            for ( let i = 0; i < count; i ++ ) {        // zählt die tabs
-                tabs += "\t";                           // kombiniert alle tabs aus
-            }
-            return tabs;
         }
 
 /********************************************************/
